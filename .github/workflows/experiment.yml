@@ -1,4 +1,4 @@
-name: Your Fork
+name: Experiment
 
 on:
   pull_request_target:
