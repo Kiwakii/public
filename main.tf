@@ -12,17 +12,16 @@ terraform {
   required_version = ">= 1.1.0"
 
   cloud {
-    organization = "TFCBrightBimpong"
+    organization = "TFC-GITHUB-CLOUD"
 
     workspaces {
-      name = "TFCBrightBimpong"
+      name = "AWS-TFC-GITHUB-CLOUD"
     }
   }
 }
 
-
 provider "aws" {
-  region = "us-east-1"
+  region = "us-west-2"
 }
 
 
