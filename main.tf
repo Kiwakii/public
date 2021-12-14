@@ -1,29 +1,17 @@
-# terraform {
-#   required_providers {
-#     aws = {
-#       source  = "hashicorp/aws"
-#       version = "3.26.0"
-#     }
-#     random = {
-#       source  = "hashicorp/random"
-#       version = "3.0.1"
-#     }
-#   }
-#   required_version = ">= 1.1.0"
-
-#   cloud {
-#     organization = "TFC-GITHUB-CLOUD"
-
-#     workspaces {
-#       name = "AWS-TFC-GITHUB-CLOUD"
-#     }
-#   }
-# }
-
-
 terraform {
-  backend "remote" {
-    hostname = "app.terraform.io"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.26.0"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.0.1"
+    }
+  }
+  required_version = ">= 1.1.0"
+
+  cloud {
     organization = "TFC-GITHUB-CLOUD"
 
     workspaces {
@@ -31,9 +19,6 @@ terraform {
     }
   }
 }
-
-
-
 
 provider "aws" {
   region = "us-west-2"
