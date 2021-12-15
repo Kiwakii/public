@@ -28,7 +28,7 @@ provider "aws" {
 
 resource "aws_s3_bucket_object" "objtf" {
   bucket = "experiment-terraform"
-  key    = "index.html"
+  key    = "aws_s3_bucket_object.objtf"
   source = "C:\\Users\\brigh\\OneDrive\\Documents\\Projects\\Dow_Jones_AWS\\terraform\\index.html"
 
   # The filemd5() function is available in Terraform 0.11.12 and later
