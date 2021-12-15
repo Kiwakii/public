@@ -26,25 +26,15 @@ provider "aws" {
   secret_key = "hHKqa88uQMrxudhVrvKA6jzMap9qryLNMAfBs4Q4"
 }
 
-resource "aws_s3_bucket" "bkt" {
+resource "aws_s3_bucket_object" "objtf" {
   bucket = "experiment-terraform"
-  acl    = "public-read"
+  key    = "aws_s3_bucket_object.objtf"
+  source = "index.html"
 
-  website {
-    index_document = "index.html"
-    error_document = "error.html"
-
-    routing_rules = <<EOF
-[{
-    "Condition": {
-        "KeyPrefixEquals": "docs/"
-    },
-    "Redirect": {
-        "ReplaceKeyPrefixWith": "documents/"
-    }
-}]
-EOF
-  }
+  # The filemd5() function is available in Terraform 0.11.12 and later
+  # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
+  # etag = "${md5(file("path/to/file"))}"
+  etag = filemd5("index.html")
 }
 
 resource "random_pet" "sg" {}
