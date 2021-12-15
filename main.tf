@@ -10,11 +10,9 @@ terraform {
     }
   }
   required_version = ">= 1.1.0"
+
   backend "remote" {
     hostname = "app.terraform.io"
-  }
-
-  cloud {
     organization = "TFC-GITHUB-CLOUD"
 
     workspaces {
@@ -26,9 +24,6 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
-
-
-
 
 resource "random_pet" "sg" {}
 
