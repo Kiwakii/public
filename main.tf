@@ -29,7 +29,6 @@ provider "aws" {
 resource "aws_s3_bucket" "bkt" {
   bucket = "experiment-terraform"
   acl    = "public-read"
-  policy = file("policy.json")
 
   website {
     index_document = "index.html"
