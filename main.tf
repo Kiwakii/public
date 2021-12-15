@@ -10,20 +10,23 @@ terraform {
     }
   }
   required_version = ">= 1.1.0"
-
   backend "remote" {
     hostname = "app.terraform.io"
-    organization = "TFCBrightBimpong"
+  }
+
+  cloud {
+    organization = "TFC-GITHUB-CLOUD"
 
     workspaces {
-      name = "TFCBrightBimpong"
+      name = "AWS-TFC-GITHUB-CLOUD"
     }
   }
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region = "us-east-1"
 }
+
 
 
 
