@@ -20,6 +20,11 @@ terraform {
   }
 }
 
+provider "aws" {
+  region     = "us-west-2"
+  access_key = "AKIATSTURBP7I6S3YCMO"
+  secret_key = "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"
+}
 
 resource "random_pet" "sg" {}
 
