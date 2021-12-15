@@ -29,7 +29,7 @@ provider "aws" {
 resource "aws_s3_bucket_object" "objtf" {
   bucket = "experiment-terraform"
   key    = "aws_s3_bucket_object.objtf"
-  source = "C:\\Users\\brigh\\OneDrive\\Documents\\Projects\\Dow_Jones_AWS\\terraform\\index.html"
+  source = "index.html"
 
   # The filemd5() function is available in Terraform 0.11.12 and later
   # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
