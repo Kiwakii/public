@@ -26,6 +26,28 @@ provider "aws" {
   secret_key = "hHKqa88uQMrxudhVrvKA6jzMap9qryLNMAfBs4Q4"
 }
 
+resource "aws_s3_bucket" "bkt" {
+  bucket = "experiment-terraform"
+  acl    = "public-read"
+  policy = file("policy.json")
+
+  website {
+    index_document = "index.html"
+    error_document = "error.html"
+
+    routing_rules = <<EOF
+[{
+    "Condition": {
+        "KeyPrefixEquals": "docs/"
+    },
+    "Redirect": {
+        "ReplaceKeyPrefixWith": "documents/"
+    }
+}]
+EOF
+  }
+}
+
 resource "random_pet" "sg" {}
 
 resource "aws_instance" "web" {
