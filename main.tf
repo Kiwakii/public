@@ -22,13 +22,13 @@ terraform {
 
 provider "aws" {
   region     = "us-east-1"
-  access_key = "AKIATSTURBP7I6S3YCMO"
-  secret_key = "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"
+  # access_key = "AKIATSTURBP7I6S3YCMO"
+  # secret_key = "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"
 }
 
 resource "aws_s3_bucket_object" "objtf" {
   bucket = "experiment-terraform"
-  key    = "index.html"
+  key    = "aws_s3_bucket_object.objtf"
   source = "index.html"
 
   # The filemd5() function is available in Terraform 0.11.12 and later
