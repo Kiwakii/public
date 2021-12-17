@@ -22,8 +22,8 @@ terraform {
 
 provider "aws" {
   region     = "us-east-1"
-  access_key = "AKIATSTURBP7I6S3YCMO"
-  secret_key = "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"
+  access_key = "AWS_ACCESS_KEY_ID"
+  secret_key = "AWS_SECRET_ACCESS_KEY"
 }
 
 resource "aws_s3_bucket_object" "objtf" {
