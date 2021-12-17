@@ -11,17 +11,19 @@ terraform {
   }
   required_version = ">= 1.1.0"
 
-cloud {
-    organization = "TFC-GITHUB-CLOUD"
+  cloud {
+    organization = "gh-actions-demo-1"
 
     workspaces {
-      name = "AWS-TFC-GITHUB-CLOUD"
+      name = "gh-actions-demo"
     }
   }
 }
 
 provider "aws" {
   region     = "us-east-1"
+  access_key = "AKIATSTURBP7I6S3YCMO"
+  secret_key = "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"
 }
 
 resource "aws_s3_bucket_object" "objtf" {
