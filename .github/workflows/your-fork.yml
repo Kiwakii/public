@@ -12,4 +12,4 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         # Optional. Post a issue comment just before closing a pull request.
-        comment: "Hi! Seems to be fine"
+        comment: "Hi! Seems to be fine I"
