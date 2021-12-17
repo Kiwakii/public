@@ -12,45 +12,55 @@ terraform {
   required_version = ">= 1.1.0"
 
   cloud {
-    organization = "TFCBrightBimpong"
+    organization = "gh-actions-demo-1"
 
     workspaces {
-      name = "TFCBrightBimpong"
+      name = "gh-actions-demo"
     }
   }
 }
 
-
 provider "aws" {
-  region = "us-east-1"
+  region     = "us-east-1"
+  access_key = "aws_access_key_id"
+  secret_key = "aws_secret_access_key"
 }
 
+resource "aws_s3_bucket_object" "objtf" {
+  bucket = "experiment-terraform"
+  key    = "index.html"
+  source = "index.html"
 
+  # The filemd5() function is available in Terraform 0.11.12 and later
+  # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
+  # etag = "${md5(file("path/to/file"))}"
+  etag = filemd5("index.html")
+}
 
 resource "random_pet" "sg" {}
 
-resource "aws_instance" "web" {
-  ami                    = "ami-830c94e3"
-  instance_type          = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.web-sg.id]
+# resource "aws_instance" "web" {
+#   ami                    = "ami-830c94e3"
+#   instance_type          = "t2.micro"
+#   vpc_security_group_ids = [aws_security_group.web-sg.id]
 
-  user_data = <<-EOF
-              #!/bin/bash
-              echo "Hello, World" > index.html
-              nohup busybox httpd -f -p 8080 &
-              EOF
-}
+#   user_data = <<-EOF
+#               #!/bin/bash
+#               echo "Hello, World" > index.html
+#               nohup busybox httpd -f -p 8080 &
+#               EOF
+# }
 
-resource "aws_security_group" "web-sg" {
-  name = "${random_pet.sg.id}-sg"
-  ingress {
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
+# resource "aws_security_group" "web-sg" {
+#   name = "${random_pet.sg.id}-sg"
+#   ingress {
+#     from_port   = 8080
+#     to_port     = 8080
+#     protocol    = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+# }
 
-output "web-address" {
-  value = "${aws_instance.web.public_dns}:8080"
-}
+# output "web-address" {
+#   value = "${aws_instance.web.public_dns}:8080"
+# }
