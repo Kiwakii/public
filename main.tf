@@ -12,12 +12,11 @@ terraform {
   required_version = ">= 1.1.0"
 
   cloud {
-    organization = "gh-actions-demo-1"
+    organization = "TFC-GITHUB-CLOUD"
 
     workspaces {
-      name = "gh-actions-demo"
+      name = "AWS-TFC-GITHUB-CLOUD"
     }
-  }
 }
 
 provider "aws" {
