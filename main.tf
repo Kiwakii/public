@@ -25,26 +25,25 @@ provider "aws" {
   secret_key = AWS_SECRET_ACCESS_KEY
 }
 
+# resource "aws_s3_bucket_object" "objtf" {
+#   bucket = "experiment-terraform"
+#   key    = "aws_s3_bucket_object.objtf"
+#   source = "index.html"
+
+#   # The filemd5() function is available in Terraform 0.11.12 and later
+#   # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
+#   # etag = "${md5(file("path/to/file"))}"
+#   etag = filemd5("index.html")
+# }
+
 resource "aws_s3_bucket_object" "objtf" {
+  for_each = fileset("./website/", "**")
   bucket = "experiment-terraform"
-  key    = "aws_s3_bucket_object.objtf"
-  source = "index.html"
-
-  # The filemd5() function is available in Terraform 0.11.12 and later
-  # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
-  # etag = "${md5(file("path/to/file"))}"
-  etag = filemd5("index.html")
+  key = each.value
+  source = "./website/${each.value}"
+  etag = filemd5("./website/${each.value}")
 }
-resource "aws_s3_bucket_object" "objtf_a" {
-  bucket = "experiment-terraform"
-  key    = "aws_s3_bucket_object_a.objtf"
-  source = "index_a.html"
 
-  # The filemd5() function is available in Terraform 0.11.12 and later
-  # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
-  # etag = "${md5(file("path/to/file"))}"
-  etag = filemd5("index_a.html")
-}
 
 resource "random_pet" "sg" {}
 
