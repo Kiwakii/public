@@ -35,7 +35,7 @@ resource "aws_s3_bucket_object" "objtf" {
   # etag = "${md5(file("path/to/file"))}"
   etag = filemd5("index.html")
 }
-resource "aws_s3_bucket_object" "objtf" {
+resource "aws_s3_bucket_object" "objtf_a" {
   bucket = "experiment-terraform"
   key    = "aws_s3_bucket_object_a.objtf"
   source = "index_a.html"
